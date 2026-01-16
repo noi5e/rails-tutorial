@@ -55,3 +55,6 @@ config/webpacker.yml
 # Ignore editor-specific files
 .DS_Store # macOS
 thumbs.db # Windows
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
