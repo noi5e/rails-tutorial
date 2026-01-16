@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    platform: linux/amd64
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: >
+      bash -lc '
+        set -e
+        RAILS=/usr/local/bundle/bin/rails
+
+        if [ ! -f Gemfile ]; then
+          "$$RAILS" new . --force --skip-git
+        fi
+
+        bundle install
+        bin/rails s -b 0.0.0.0 -p 3000
+      '
