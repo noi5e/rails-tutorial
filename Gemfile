@@ -29,3 +29,7 @@ group :test do
   gem "selenium-webdriver", "4.9.0"
   gem "webdrivers", "5.3.1"
 end
+
+group :production do
+  gem "pg", "1.5.9"
+end
