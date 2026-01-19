@@ -5,7 +5,7 @@ ruby "3.4.3"
 
 gem "rails", "8.0.2"
 gem "propshaft", "1.2.1"
-gem "importmap-rails", "2.1.0"
+gem "importmap-rails", "2.2.3"
 gem "turbo-rails", "2.0.14"
 gem "stimulus-rails", "1.3.4"
 gem "jbuilder", "2.13.0"
