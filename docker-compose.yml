@@ -1,21 +1,25 @@
 services:
   web:
     build: .
-    platform: linux/amd64
-    working_dir: /app
-    volumes:
-      - .:/app
     ports:
       - "3000:3000"
-    command: >
-      bash -lc '
-        set -e
-        RAILS=/usr/local/bundle/bin/rails
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    env_file:
+      - .env
+    depends_on:
+      - db
 
-        if [ ! -f Gemfile ]; then
-          "$$RAILS" new . --force --skip-git
-        fi
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
-        bundle install
-        bin/rails s -b 0.0.0.0 -p 3000
-      '
+volumes:
+  bundle:
+  pgdata:
